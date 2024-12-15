@@ -1,7 +1,10 @@
 :root {
-  --primary-color: #F4FAFF;
-  --secondary-color: #2ecc71;
-  --text-color: #333333;
+  --white-color: #ffffff;
+  --transparent-color: rgba(255, 255, 255, 0.2);
+  --bg-transparent-color: rgba(0, 0, 0, 0.8);
+  --bt-color: #9233ea;
+  --hover-color: #7d22ce;
+  --text-color: #ffffff;
   --gradiente-color: linear-gradient(to right, #8e44ad, #2c3e50);
 }
 
@@ -32,16 +35,30 @@ body {
   justify-items: center;
   grid-template-columns: repeat(3, auto);
 }
+
+
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  background-color: var(--transparent-color) !important;
+}
+
+
 /* celula */
 
 .cell {
   width: 100px;
   height: 100px;
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--white-color);
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+}
+
+.cell.x, .cell.circle {
+  cursor: not-allowed;
 }
 
 .cell:nth-child(1),
@@ -68,24 +85,84 @@ body {
   border-right: none;
 }
 
-/*  X */
+/* X */
 .cell.x::before,
-.cell.x::after {
-  content: '';
-  height: calc(100px * 0.15);
-  width: calc(100px * 0.9);
-  background: var(--primary-color);
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before {
+  content: "";
+  height: calc(100px * 0.10);
+  width: calc(100px * 0.7);
+  background: var(--white-color);
   position: absolute;
 }
 
-.cell.x::before {
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
   transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
   transform: rotate(-45deg);
 }
+
 /* Mensagem de vitória */
 .winning-message {
   font-display: none;
+}
+
+/* Circle */
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  content: '';
+  height: calc(100px * 0.7);
+  width: calc(100px * 0.7);
+  background: var(--white-color);
+  position: absolute;
+  border-radius: 50%;
+}
+
+
+/* Mensagem de Vitória */
+.winning-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  flex-direction: column;
+}
+
+.winning-message-button {
+  font-size: 2.5rem;
+  background-color: var(--bt-color);
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  margin-top: 16px;
+  color: var(--text-color)
+}
+
+.winning-message-button:hover {
+  color: var(--text-color);
+  background-color: var(--hover-color);
+  transform: translateY(-4px);
+  transition: 0.2s ease-out
+}
+
+.winning-message-text {
+  color: var(--text-color);
+  font-size: 5rem;
+}
+
+.show-winning-message {
+  display: flex;
 }
