@@ -1,6 +1,6 @@
 # Projeto jogo da Velha
 
-Este é um simples jogo da velha interativo desenvolvido com HTML, CSS e JavaScript, focando em lógica de programação e uma experiência de usuário divertida.
+Este é um jogo da velha interativo desenvolvido com HTML, CSS e JavaScript, focando em lógica de programação e uma experiência de usuário divertida.
 
 ![image](https://github.com/user-attachments/assets/e5782341-5fc4-4003-a705-73763eea60e1)
 
